@@ -3,6 +3,7 @@ package br.com.victorleitecosta.libraryapi.api.resource;
 import br.com.victorleitecosta.libraryapi.api.dto.BookDTO;
 import br.com.victorleitecosta.libraryapi.api.model.entity.Book;
 import br.com.victorleitecosta.libraryapi.api.service.BookService;
+import br.com.victorleitecosta.libraryapi.api.service.LoanService;
 import br.com.victorleitecosta.libraryapi.exception.BusinessException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -46,6 +47,9 @@ public class BookControllerTest {
 
     @MockBean
     BookService service;
+
+    @MockBean
+    LoanService loanService;
 
     @Test
     @DisplayName("Deve criar um livro com sucesso.")
@@ -176,8 +180,7 @@ public class BookControllerTest {
         MockHttpServletRequestBuilder request = delete(BOOK_API.concat("/" + 1))
                 .accept(MediaType.APPLICATION_JSON);
 
-        mvc
-                .perform(request)
+        mvc.perform(request)
                 .andExpect(status().isNotFound());
     }
 

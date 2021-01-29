@@ -1,12 +1,11 @@
 package br.com.victorleitecosta.libraryapi.api.service.impl;
 
 import br.com.victorleitecosta.libraryapi.api.model.entity.Book;
-import br.com.victorleitecosta.libraryapi.api.service.BookService;
 import br.com.victorleitecosta.libraryapi.api.model.repository.BookRepository;
+import br.com.victorleitecosta.libraryapi.api.service.BookService;
 import br.com.victorleitecosta.libraryapi.exception.BusinessException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -65,6 +64,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Optional<Book> getBookByIsbn(String isbn) {
-        return null;
+        return repository.findByIsbn(isbn);
     }
 }
